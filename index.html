@@ -312,6 +312,11 @@ var baseMaps = {
         });
         bounds_group.addLayer(layer_Equipaments_0);
         map.addLayer(layer_Equipaments_0);
+
+var baseTree = [
+  { label: "Mapa topogràfic", layer: TopograficOSM },
+  { label: "Ortofotomapa", layer: OrtofotoEsri }
+];
 			
 			var overlaysTree = [
             {label: '<img src="legend/Equipaments_0.png" /> Equipaments', layer: layer_Equipaments_0}, {label: '<img src="legend/DelimitaciTreballalsbarrisSOC_1.png" /> Delimitació Treball als barris (SOC)', layer: layer_DelimitaciTreballalsbarrisSOC_1},
