@@ -229,8 +229,79 @@ GoogleBase.addTo(map);
         });
         bounds_group.addLayer(layer_DelimitaciTreballalsbarrisSOC_1);
         map.addLayer(layer_DelimitaciTreballalsbarrisSOC_1);
-        var overlaysTree = [
-            {label: '<img src="legend/DelimitaciTreballalsbarrisSOC_1.png" /> Delimitació Treball als barris (SOC)', layer: layer_DelimitaciTreballalsbarrisSOC_1},
+        function pop_Equipaments_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">IDEQUIPAMENT</th>\
+                        <td>' + (feature.properties['IDEQUIPAMENT'] !== null ? autolinker.link(String(feature.properties['IDEQUIPAMENT']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">NOM</th>\
+                        <td>' + (feature.properties['NOM'] !== null ? autolinker.link(String(feature.properties['NOM']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ALIES</th>\
+                        <td>' + (feature.properties['ALIES'] !== null ? autolinker.link(String(feature.properties['ALIES']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">VIA</th>\
+                        <td>' + (feature.properties['VIA'] !== null ? autolinker.link(String(feature.properties['VIA']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">NUM</th>\
+                        <td>' + (feature.properties['NUM'] !== null ? autolinker.link(String(feature.properties['NUM']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">CATEGORIA</th>\
+                        <td>' + (feature.properties['CATEGORIA'] !== null ? autolinker.link(String(feature.properties['CATEGORIA']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_Equipaments_0_0() {
+            return {
+                pane: 'pane_Equipaments_0',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,7,14,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Equipaments_0');
+        map.getPane('pane_Equipaments_0').style.zIndex = 400;
+        map.getPane('pane_Equipaments_0').style['mix-blend-mode'] = 'normal';
+        var layer_Equipaments_0 = new L.geoJson(json_Equipaments_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Equipaments_0',
+            layerName: 'layer_Equipaments_0',
+            pane: 'pane_Equipaments_0',
+            onEachFeature: pop_Equipaments_0,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Equipaments_0_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Equipaments_0);
+        map.addLayer(layer_Equipaments_0);
+			
+			var overlaysTree = [
+            {label: '<img src="legend/Equipaments_0.png" /> Equipaments', layer: layer_Equipaments_0}, {label: '<img src="legend/DelimitaciTreballalsbarrisSOC_1.png" /> Delimitació Treball als barris (SOC)', layer: layer_DelimitaciTreballalsbarrisSOC_1},
             {label: '<img src="legend/DelimitaciPladeBarrisGeneralitat_0.png" /> Delimitació Pla de Barris (Generalitat)', layer: layer_DelimitaciPladeBarrisGeneralitat_0},]
         var lay = L.control.layers.tree(null, overlaysTree,{
             //namedToggle: true,
