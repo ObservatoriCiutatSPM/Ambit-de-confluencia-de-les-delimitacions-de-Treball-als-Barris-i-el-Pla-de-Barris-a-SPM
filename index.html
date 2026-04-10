@@ -321,7 +321,7 @@ var baseTree = [
 			var overlaysTree = [
             {label: '<img src="legend/Equipaments_0.png" /> Equipaments', layer: layer_Equipaments_0}, {label: '<img src="legend/DelimitaciTreballalsbarrisSOC_1.png" /> Delimitació Treball als barris (SOC)', layer: layer_DelimitaciTreballalsbarrisSOC_1},
             {label: '<img src="legend/DelimitaciPladeBarrisGeneralitat_0.png" /> Delimitació Pla de Barris (Generalitat)', layer: layer_DelimitaciPladeBarrisGeneralitat_0},]
-        var lay = L.control.layers.tree(null, overlaysTree,{
+        var lay = L.control.layers.tree(baseTree, overlaysTree,{
             //namedToggle: true,
             //selectorBack: false,
             //closedSymbol: '&#8862; &#x1f5c0;',
